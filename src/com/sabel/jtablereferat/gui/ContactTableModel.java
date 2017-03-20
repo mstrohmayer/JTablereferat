@@ -6,7 +6,6 @@ import com.sabel.jtablereferat.model.ContactService;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
-import javax.swing.text.TableView;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -108,6 +107,10 @@ public class ContactTableModel implements TableModel {
                 throw new IllegalArgumentException("Wrong column");
         }
         cs.setContact(contact);
+        TableModelEvent event = new TableModelEvent(this, rowIndex, rowIndex, TableModelEvent.ALL_COLUMNS, TableModelEvent.UPDATE);
+        for (TableModelListener listener : listeners) {
+            listener.tableChanged(event);
+        }
     }
 
     @Override
