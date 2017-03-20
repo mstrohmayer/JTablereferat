@@ -124,8 +124,8 @@ public class ContactTableModel implements TableModel {
     }
 
     public void addContact(Contact contact) {
-        int row = cs.getSize();
         cs.add(contact);
+        int row = cs.getSize();
 
         TableModelEvent event = new TableModelEvent(this, row, row, TableModelEvent.ALL_COLUMNS, TableModelEvent.INSERT);
         for (TableModelListener listener : listeners) {

@@ -32,15 +32,16 @@ public class ContactService {
     }
 
     public void setContact(Contact contact) {
-        Contact c = suchen(contact.getName());
-        if (c == null) {
+        if (contacts.contains(contact)) {
+            Contact c = getContact(contact.getID());
+            c.setFirstname(contact.getFirstname());
+            c.setName(contact.getName());
+            c.setEmailAddress(contact.getEmail());
+            c.setPhoneNumber(contact.getNummer());
+        }else {
             add(contact);
             return;
         }
-        c.setFirstname(contact.getFirstname());
-        c.setName(contact.getName());
-        c.setEmailAddress(contact.getEmail());
-        c.setPhoneNumber(contact.getNummer());
     }
 
     public String[] getHeader() {
